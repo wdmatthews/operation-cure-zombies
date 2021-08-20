@@ -82,5 +82,43 @@ namespace Project.Tests.PlayMode
                 yield return null;
             }
         }
+
+        public class Cooldown
+        {
+            [UnityTest]
+            public IEnumerator Given_IsCoolingDownAndFinishCooldown_Then_NotCoolingDown()
+            {
+                Weapon weapon = A.Weapon;
+                weapon.IsCoolingDown = true;
+                weapon.FinishCooldown();
+                Assert.IsFalse(weapon.IsCoolingDown);
+                yield return null;
+            }
+        }
+
+        public class Reload
+        {
+            [UnityTest]
+            public IEnumerator Given_IsReloadingAndCancelReload_Then_NotReloading()
+            {
+                WeaponSO weaponData = WeaponBuilder.DefaultData;
+                Weapon weapon = A.Weapon.WithData(weaponData);
+                weapon.IsReloading = true;
+                weapon.CancelReload();
+                Assert.IsFalse(weapon.IsReloading);
+                yield return null;
+            }
+
+            [UnityTest]
+            public IEnumerator Given_IsReloadingAndFinishReload_Then_NotReloading()
+            {
+                WeaponSO weaponData = WeaponBuilder.DefaultData;
+                Weapon weapon = A.Weapon.WithData(weaponData);
+                weapon.IsReloading = true;
+                weapon.FinishReload();
+                Assert.IsFalse(weapon.IsReloading);
+                yield return null;
+            }
+        }
     }
 }
