@@ -3,16 +3,19 @@
     "rootNamespace": "Project.Tests.EditMode",
     "references": [
         "GUID:0acc523941302664db1f4e527237feb3",
-        "GUID:27619889b8ba8c24980f49ee34dbb44a"
+        "GUID:27619889b8ba8c24980f49ee34dbb44a",
+        "GUID:bf3d3da40777a44b2982d4d43851e118"
     ],
     "includePlatforms": [
         "Editor"
     ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
-    "overrideReferences": false,
-    "precompiledReferences": [],
-    "autoReferenced": true,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": false,
     "defineConstraints": [],
     "versionDefines": [],
     "noEngineReferences": false
