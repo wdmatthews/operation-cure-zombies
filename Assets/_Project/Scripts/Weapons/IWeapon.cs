@@ -10,14 +10,17 @@ namespace Project.Weapons
         bool IsCoolingDown { get; set; }
         bool IsReloading { get; set; }
         bool IsDoneCoolingDown { get; }
+        bool IsDoneReloading { get; }
         bool HasAmmo { get; }
         bool NeedsToReload { get; }
         bool CanUse { get; }
 
         void Use();
         void StartCooldown();
-        void EndCooldown();
-        void Reload();
+        void FinishCooldown();
+        void StartReload();
+        void CancelReload();
+        void FinishReload();
         void OnUpdate();
     }
 }

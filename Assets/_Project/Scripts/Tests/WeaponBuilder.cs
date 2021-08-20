@@ -5,11 +5,45 @@ namespace Project.Tests
 {
     public class WeaponBuilder
     {
+        private static WeaponSO _defaultData = null;
+
+        public static WeaponSO DefaultData
+        {
+            get
+            {
+                if (_defaultData == null)
+                {
+                    _defaultData = ScriptableObject.CreateInstance<WeaponSO>();
+                    _defaultData.ClipSize = 2;
+                    _defaultData.MaxAmmo = 4;
+                    _defaultData.CooldownDuration = 1;
+                    _defaultData.ReloadDuration = 1;
+                    _defaultData.ReloadBehavior = ScriptableObject.CreateInstance<NullReloadBehaviorSO>();
+                }
+
+                return _defaultData;
+            }
+        }
+
         private WeaponSO _data = null;
+        private int _ammoInClip = 0;
+        private int _ammoInReserve = 0;
 
         public WeaponBuilder WithData(WeaponSO data)
         {
             _data = data;
+            return this;
+        }
+
+        public WeaponBuilder WithAmmoInClip(int amount)
+        {
+            _ammoInClip = amount;
+            return this;
+        }
+
+        public WeaponBuilder WithAmmoInReserve(int amount)
+        {
+            _ammoInReserve = amount;
             return this;
         }
 
@@ -18,6 +52,8 @@ namespace Project.Tests
             GameObject weaponGO = new GameObject();
             Weapon weapon = weaponGO.AddComponent<Weapon>();
             weapon.Data = _data;
+            weapon.AmmoInClip = _ammoInClip;
+            weapon.AmmoInReserve = _ammoInReserve;
             return weapon;
         }
 
