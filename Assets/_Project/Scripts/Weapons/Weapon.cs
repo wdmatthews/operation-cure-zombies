@@ -4,7 +4,7 @@ namespace Project.Weapons
 {
     public class Weapon : MonoBehaviour, IWeapon
     {
-        public virtual WeaponSO Data { get; set; }
+        public virtual WeaponSO WeaponData { get; set; }
         public int AmmoInClip { get; set; }
         public int AmmoInReserve { get; set; }
         public float CooldownTimer { get; set; }
@@ -34,7 +34,7 @@ namespace Project.Weapons
         {
             if (IsCoolingDown) return;
             IsCoolingDown = true;
-            CooldownTimer = Data.CooldownDuration;
+            CooldownTimer = WeaponData.CooldownDuration;
         }
 
         public virtual void FinishCooldown()
@@ -47,34 +47,34 @@ namespace Project.Weapons
         {
             if (IsReloading) return;
             IsReloading = true;
-            ReloadTimer = Data.ReloadDuration;
-            Data.ReloadBehavior.StartReload(this);
+            ReloadTimer = WeaponData.ReloadDuration;
+            WeaponData.ReloadBehavior.StartReload(this);
         }
 
         public virtual void CancelReload()
         {
             if (!IsReloading) return;
             IsReloading = false;
-            Data.ReloadBehavior.CancelReload(this);
+            WeaponData.ReloadBehavior.CancelReload(this);
         }
 
         public virtual void FinishReload()
         {
             if (!IsReloading) return;
             IsReloading = false;
-            Data.ReloadBehavior.FinishReload(this);
+            WeaponData.ReloadBehavior.FinishReload(this);
         }
 
         public virtual void OnUpdate()
         {
             if (IsDoneCoolingDown) FinishCooldown();
-            else if (IsCoolingDown) CooldownTimer = Mathf.Clamp(CooldownTimer - Time.deltaTime, 0, Data.CooldownDuration);
+            else if (IsCoolingDown) CooldownTimer = Mathf.Clamp(CooldownTimer - Time.deltaTime, 0, WeaponData.CooldownDuration);
 
             if (IsDoneReloading) FinishReload();
             else if (IsReloading)
             {
-                ReloadTimer = Mathf.Clamp(ReloadTimer - Time.deltaTime, 0, Data.ReloadDuration);
-                Data.ReloadBehavior.OnUpdate(this);
+                ReloadTimer = Mathf.Clamp(ReloadTimer - Time.deltaTime, 0, WeaponData.ReloadDuration);
+                WeaponData.ReloadBehavior.OnUpdate(this);
             }
         }
     }

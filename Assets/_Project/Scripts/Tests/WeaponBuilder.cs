@@ -51,15 +51,12 @@ namespace Project.Tests
         {
             GameObject weaponGO = new GameObject();
             Weapon weapon = weaponGO.AddComponent<Weapon>();
-            weapon.Data = _data;
+            weapon.WeaponData = _data;
             weapon.AmmoInClip = _ammoInClip;
             weapon.AmmoInReserve = _ammoInReserve;
             return weapon;
         }
 
-        public static implicit operator Weapon(WeaponBuilder builder)
-        {
-            return builder.Build();
-        }
+        public static implicit operator Weapon(WeaponBuilder builder) => builder.Build();
     }
 }

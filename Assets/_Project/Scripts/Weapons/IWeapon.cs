@@ -2,7 +2,7 @@ namespace Project.Weapons
 {
     public interface IWeapon
     {
-        WeaponSO Data { get; set; }
+        WeaponSO WeaponData { get; set; }
         int AmmoInClip { get; set; }
         int AmmoInReserve { get; set; }
         float CooldownTimer { get; set; }
