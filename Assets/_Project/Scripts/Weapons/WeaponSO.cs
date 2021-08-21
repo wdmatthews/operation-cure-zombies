@@ -12,7 +12,7 @@ namespace Project.Weapons
         [Header("Ammo")]
         public AmmoTypeSO AmmoType = null;
         public int ClipSize = 1;
-        public int MaxAmmo = 2;
+        public int ReserveSize = 2;
 
         [Space]
         [Header("Reload")]

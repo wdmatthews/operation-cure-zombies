@@ -14,6 +14,7 @@ namespace Project.Weapons
         bool HasAmmo { get; }
         bool NeedsToReload { get; }
         bool CanUse { get; }
+        bool CanReload { get; }
 
         void Use();
         void StartCooldown();
@@ -21,6 +22,8 @@ namespace Project.Weapons
         void StartReload();
         void CancelReload();
         void FinishReload();
+        void ChangeAmmoInClip(int amount);
+        void ChangeAmmoInReserve(int amount);
         void OnUpdate();
     }
 }

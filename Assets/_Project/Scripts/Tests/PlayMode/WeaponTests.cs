@@ -119,6 +119,111 @@ namespace Project.Tests.PlayMode
                 Assert.IsFalse(weapon.IsReloading);
                 yield return null;
             }
+
+            [UnityTest]
+            public IEnumerator Given_ReloadFromFullReserve_Then_FillClip()
+            {
+                WeaponSO weaponData = WeaponBuilder.DefaultData;
+                Weapon weapon = A.Weapon.WithData(weaponData).WithAmmoInClip(1).WithAmmoInReserve(4);
+                weaponData.ReloadBehavior.FinishReload(weapon);
+                Assert.IsTrue(weapon.AmmoInClip == 2);
+                Assert.IsTrue(weapon.AmmoInReserve == 3);
+                yield return null;
+            }
+
+            [UnityTest]
+            public IEnumerator Given_ReloadFromLimitedReserve_Then_PartiallyFillClip()
+            {
+                WeaponSO weaponData = WeaponBuilder.DefaultData;
+                Weapon weapon = A.Weapon.WithData(weaponData).WithAmmoInClip(0).WithAmmoInReserve(1);
+                weaponData.ReloadBehavior.FinishReload(weapon);
+                Assert.IsTrue(weapon.AmmoInClip == 1);
+                Assert.IsTrue(weapon.AmmoInReserve == 0);
+                yield return null;
+            }
+        }
+
+        public class ChangeAmmo
+        {
+            [UnityTest]
+            public IEnumerator Given_NoAmmoInClipAndFillClip_Then_FillClip()
+            {
+                WeaponSO weaponData = WeaponBuilder.DefaultData;
+                Weapon weapon = A.Weapon.WithData(weaponData).WithAmmoInClip(0);
+                weapon.ChangeAmmoInClip(2);
+                Assert.IsTrue(weapon.AmmoInClip == 2);
+                yield return null;
+            }
+
+            [UnityTest]
+            public IEnumerator Given_NoAmmoInClipAndOverfillClip_Then_FillClip()
+            {
+                WeaponSO weaponData = WeaponBuilder.DefaultData;
+                Weapon weapon = A.Weapon.WithData(weaponData).WithAmmoInClip(0);
+                weapon.ChangeAmmoInClip(3);
+                Assert.IsTrue(weapon.AmmoInClip == 2);
+                yield return null;
+            }
+
+            [UnityTest]
+            public IEnumerator Given_RemoveAmmoInClip_Then_EmptyClip()
+            {
+                WeaponSO weaponData = WeaponBuilder.DefaultData;
+                Weapon weapon = A.Weapon.WithData(weaponData).WithAmmoInClip(2);
+                weapon.ChangeAmmoInClip(-2);
+                Assert.IsTrue(weapon.AmmoInClip == 0);
+                yield return null;
+            }
+
+            [UnityTest]
+            public IEnumerator Given_RemoveAmmoInClip_Then_OveremptyClip()
+            {
+                WeaponSO weaponData = WeaponBuilder.DefaultData;
+                Weapon weapon = A.Weapon.WithData(weaponData).WithAmmoInClip(2);
+                weapon.ChangeAmmoInClip(-3);
+                Assert.IsTrue(weapon.AmmoInClip == 0);
+                yield return null;
+            }
+
+            [UnityTest]
+            public IEnumerator Given_NoAmmoInReserveAndFillReserve_Then_FillReserve()
+            {
+                WeaponSO weaponData = WeaponBuilder.DefaultData;
+                Weapon weapon = A.Weapon.WithData(weaponData).WithAmmoInReserve(0);
+                weapon.ChangeAmmoInReserve(4);
+                Assert.IsTrue(weapon.AmmoInReserve == 4);
+                yield return null;
+            }
+
+            [UnityTest]
+            public IEnumerator Given_NoAmmoInReserveAndOverfillReserve_Then_FillReserve()
+            {
+                WeaponSO weaponData = WeaponBuilder.DefaultData;
+                Weapon weapon = A.Weapon.WithData(weaponData).WithAmmoInReserve(0);
+                weapon.ChangeAmmoInReserve(5);
+                Assert.IsTrue(weapon.AmmoInReserve == 4);
+                yield return null;
+            }
+
+            [UnityTest]
+            public IEnumerator Given_RemoveAmmoInReserve_Then_EmptyReserve()
+            {
+                WeaponSO weaponData = WeaponBuilder.DefaultData;
+                Weapon weapon = A.Weapon.WithData(weaponData).WithAmmoInReserve(4);
+                weapon.ChangeAmmoInReserve(-4);
+                Assert.IsTrue(weapon.AmmoInReserve == 0);
+                yield return null;
+            }
+
+            [UnityTest]
+            public IEnumerator Given_RemoveAmmoInReserve_Then_OveremptyReserve()
+            {
+                WeaponSO weaponData = WeaponBuilder.DefaultData;
+                Weapon weapon = A.Weapon.WithData(weaponData).WithAmmoInReserve(4);
+                weapon.ChangeAmmoInReserve(-5);
+                Assert.IsTrue(weapon.AmmoInReserve == 0);
+                yield return null;
+            }
         }
     }
 }

@@ -18,6 +18,7 @@ namespace Project.Weapons
         {
             Projectile projectile = ProjectileWeaponData.Projectile.Request();
             projectile.Spawn(transform.position, transform.right);
+            ChangeAmmoInClip(-1);
         }
     }
 }

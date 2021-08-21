@@ -15,10 +15,10 @@ namespace Project.Tests
                 {
                     _defaultData = ScriptableObject.CreateInstance<WeaponSO>();
                     _defaultData.ClipSize = 2;
-                    _defaultData.MaxAmmo = 4;
+                    _defaultData.ReserveSize = 4;
                     _defaultData.CooldownDuration = 1;
                     _defaultData.ReloadDuration = 1;
-                    _defaultData.ReloadBehavior = ScriptableObject.CreateInstance<NullReloadBehaviorSO>();
+                    _defaultData.ReloadBehavior = ScriptableObject.CreateInstance<StandardReloadBehaviorSO>();
                 }
 
                 return _defaultData;

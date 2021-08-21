@@ -16,6 +16,7 @@ namespace Project.Weapons
         public virtual bool HasAmmo => AmmoInClip > 0 || AmmoInReserve > 0;
         public virtual bool NeedsToReload => AmmoInClip == 0;
         public virtual bool CanUse => !IsCoolingDown && !IsReloading && HasAmmo;
+        public virtual bool CanReload => !IsReloading && AmmoInClip < WeaponData.ClipSize && AmmoInReserve > 0;
 
         public virtual void Use()
         {
@@ -45,7 +46,7 @@ namespace Project.Weapons
 
         public virtual void StartReload()
         {
-            if (IsReloading) return;
+            if (!CanReload) return;
             IsReloading = true;
             ReloadTimer = WeaponData.ReloadDuration;
             WeaponData.ReloadBehavior.StartReload(this);
@@ -63,6 +64,16 @@ namespace Project.Weapons
             if (!IsReloading) return;
             IsReloading = false;
             WeaponData.ReloadBehavior.FinishReload(this);
+        }
+
+        public virtual void ChangeAmmoInClip(int amount)
+        {
+            AmmoInClip = Mathf.Clamp(AmmoInClip + amount, 0, WeaponData.ClipSize);
+        }
+
+        public virtual void ChangeAmmoInReserve(int amount)
+        {
+            AmmoInReserve = Mathf.Clamp(AmmoInReserve + amount, 0, WeaponData.ReserveSize);
         }
 
         public virtual void OnUpdate()
