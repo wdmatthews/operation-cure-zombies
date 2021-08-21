@@ -12,6 +12,7 @@ namespace Project.Weapons
         public Projectile Request()
         {
             Projectile projectile = Pool.Request();
+            projectile.ProjectileData = this;
             projectile.Pool = Pool;
             return projectile;
         }
@@ -22,6 +23,7 @@ namespace Project.Weapons
 
             for (int i = 0; i < amount; i++)
             {
+                projectiles[i].ProjectileData = this;
                 projectiles[i].Pool = Pool;
             }
 

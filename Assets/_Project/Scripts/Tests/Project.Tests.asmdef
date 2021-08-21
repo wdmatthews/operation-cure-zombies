@@ -2,6 +2,7 @@
     "name": "Project.Tests",
     "rootNamespace": "Project.Tests",
     "references": [
+        "GUID:e0433e7e6304e4d5f9c53f77ab7c5197",
         "GUID:7c65efcbc511f406fac00ce2ff9d5b39",
         "GUID:7362e5fecb6fc48bfa026a79e800c531"
     ],

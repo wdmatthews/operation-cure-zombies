@@ -36,7 +36,7 @@ namespace Project.Tests
         {
             GameObject projectileGO = new GameObject();
             Projectile projectile = projectileGO.AddComponent<Projectile>();
-            projectile.Data = _data;
+            projectile.ProjectileData = _data;
             return projectile;
         }
 
