@@ -1,7 +1,11 @@
 {
     "name": "Project.Characters",
     "rootNamespace": "Project.Characters",
-    "references": [],
+    "references": [
+        "GUID:e0433e7e6304e4d5f9c53f77ab7c5197",
+        "GUID:6b79ab74373e14eb8a2c7befd4b67836",
+        "GUID:7362e5fecb6fc48bfa026a79e800c531"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
