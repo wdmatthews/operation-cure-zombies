@@ -1,7 +1,9 @@
 {
-    "name": "Project.Items",
-    "rootNamespace": "Project.Items",
-    "references": [],
+    "name": "Project.Pickups",
+    "rootNamespace": "Project.Pickups",
+    "references": [
+        "GUID:7c65efcbc511f406fac00ce2ff9d5b39"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
