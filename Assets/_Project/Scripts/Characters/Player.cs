@@ -171,7 +171,7 @@ namespace Project.Characters
 
         public void ReloadWeapon(InputAction.CallbackContext context)
         {
-            if (!context.performed || !Weapons.Current) return;
+            if (!context.performed || Weapons.CurrentIndex < 0) return;
             ReloadWeapon();
         }
 
@@ -199,6 +199,12 @@ namespace Project.Characters
             }
         }
 
+        public void PickUpWeapon(InputAction.CallbackContext context)
+        {
+            if (!context.performed) return;
+
+        }
+
         public void DropWeapon(int index)
         {
             Weapon weapon = Weapons[index];
@@ -212,6 +218,16 @@ namespace Project.Characters
 
             weapon.ReturnToPool();
             RemoveWeapon(index);
+        }
+
+        public void DropWeapon(InputAction.CallbackContext context)
+        {
+            int currentWeaponIndex = Weapons.CurrentIndex;
+            if (!context.performed || currentWeaponIndex < 0) return;
+            DropWeapon(currentWeaponIndex);
+            int weaponCount = Weapons.Count;
+            if (weaponCount == 0) return;
+            SelectWeapon(Mathf.Clamp(currentWeaponIndex, 0, weaponCount - 1));
         }
     }
 }

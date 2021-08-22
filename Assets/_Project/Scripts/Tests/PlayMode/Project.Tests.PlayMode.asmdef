@@ -3,6 +3,7 @@
     "rootNamespace": "Project.Tests.PlayMode",
     "references": [
         "UnityEditor.TestRunner",
+        "Unity.InputSystem",
         "UnityEngine.TestRunner",
         "Project.Characters",
         "Project.Combat",

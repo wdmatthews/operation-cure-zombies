@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Test Projectile Weapon 1
   m_EditorClassIdentifier: 
   Pool: {fileID: 11400000, guid: 8339fb30ce49f4985ac8b3d77ab68ea1, type: 2}
+  WeaponPickup: {fileID: 11400000, guid: 707c0287bb2d142a0a3150aacfa670c1, type: 2}
   CooldownDuration: 1
+  IsAutomatic: 0
   AmmoType: {fileID: 11400000, guid: 0661a24ea693449b5b3618fb0385b44c, type: 2}
   ClipSize: 1
   ReserveSize: 2
