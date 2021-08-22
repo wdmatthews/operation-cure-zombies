@@ -1,7 +1,9 @@
 {
     "name": "Project.Combat",
     "rootNamespace": "Project.Combat",
-    "references": [],
+    "references": [
+        "GUID:4acce74ae5ec04488b0383c1d7313384"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 442658555d94d4bcf9d6e8d46ace999f, type: 3}
+  m_Name: Test Health Pickup Pool
+  m_EditorClassIdentifier: 
+  Prefab: {fileID: 4162545504869705785, guid: dae8d814ba92d4a6dbb7bfab890729c0, type: 3}

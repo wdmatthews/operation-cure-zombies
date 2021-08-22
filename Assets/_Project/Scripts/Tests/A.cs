@@ -7,5 +7,6 @@ namespace Project.Tests
         public static DamageableBuilder Damageable => new DamageableBuilder();
         public static PlayerBuilder Player => new PlayerBuilder();
         public static WeaponPickupBuilder WeaponPickup => new WeaponPickupBuilder();
+        public static HealthPickupBuilder HealthPickup => new HealthPickupBuilder();
     }
 }
