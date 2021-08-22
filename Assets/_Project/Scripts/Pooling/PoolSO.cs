@@ -3,11 +3,12 @@ using UnityEngine;
 
 namespace Project.Pooling
 {
-    public abstract class PoolSO<T> : ScriptableObject, IPool<T>
+    public abstract class PoolSO<T> : ScriptableObject, IPool<T> where T : MonoBehaviour
     {
+        public T Prefab = default;
         public Stack<T> Items { get; set; } = new Stack<T>();
 
-        public abstract T Create();
+        public virtual T Create() => Instantiate(Prefab);
 
         public virtual T Request()
         {

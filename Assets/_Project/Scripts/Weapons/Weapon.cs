@@ -5,6 +5,7 @@ namespace Project.Weapons
     public class Weapon : MonoBehaviour, IWeapon
     {
         public virtual WeaponSO WeaponData { get; set; }
+        public WeaponPoolSO Pool { get; set; }
         public int AmmoInClip { get; set; }
         public int AmmoInReserve { get; set; }
         public float CooldownTimer { get; set; }
@@ -17,6 +18,12 @@ namespace Project.Weapons
         public virtual bool NeedsToReload => AmmoInClip == 0;
         public virtual bool CanUse => !IsCoolingDown && !IsReloading && HasAmmo;
         public virtual bool CanReload => !IsReloading && AmmoInClip < WeaponData.ClipSize && AmmoInReserve > 0;
+
+        public void ReturnToPool()
+        {
+            gameObject.SetActive(false);
+            Pool.Return(this);
+        }
 
         public virtual void Use()
         {

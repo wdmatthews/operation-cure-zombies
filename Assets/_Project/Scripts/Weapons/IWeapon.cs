@@ -3,6 +3,7 @@ namespace Project.Weapons
     public interface IWeapon
     {
         WeaponSO WeaponData { get; set; }
+        WeaponPoolSO Pool { get; set; }
         int AmmoInClip { get; set; }
         int AmmoInReserve { get; set; }
         float CooldownTimer { get; set; }
@@ -16,6 +17,7 @@ namespace Project.Weapons
         bool CanUse { get; }
         bool CanReload { get; }
 
+        void ReturnToPool();
         void Use();
         void StartCooldown();
         void FinishCooldown();

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 059717bc1073546bc88e72af6bc44e17, type: 3}
+  m_Name: Projectile Weapon
+  m_EditorClassIdentifier: 
+  CooldownDuration: 1
+  AmmoType: {fileID: 11400000, guid: 0661a24ea693449b5b3618fb0385b44c, type: 2}
+  ClipSize: 1
+  ReserveSize: 2
+  ReloadBehavior: {fileID: 11400000, guid: 3e5ec12f4ab0e4f2393e8a561c1a5eb7, type: 2}
+  ReloadDuration: 1
+  Projectile: {fileID: 11400000, guid: 57bc2808655ab4b49b433066dec8aaac, type: 2}
