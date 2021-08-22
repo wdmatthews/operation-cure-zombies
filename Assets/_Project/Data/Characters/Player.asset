@@ -9,6 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9145276da14ea4f2981cbd8e3c637eb4, type: 3}
-  m_Name: Test Projectile
+  m_Script: {fileID: 11500000, guid: 26a5d0e1aedf44669ac7e204dff91bb0, type: 3}
+  m_Name: Player
   m_EditorClassIdentifier: 
+  MaxHealth: 1
+  MovementSpeed: 2.5
