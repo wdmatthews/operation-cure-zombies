@@ -18,6 +18,7 @@ namespace Project.Variables
 
         public void Add(T item) => _list.Add(item);
         public void AddRange(IEnumerable<T> items) => _list.AddRange(items);
+        public void Insert(int index, T item) => _list.Insert(index, item);
         public void Remove(T item) => RemoveAt(_list.IndexOf(item));
 
         public void RemoveAt(int index)

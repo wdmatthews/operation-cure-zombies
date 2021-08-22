@@ -6,6 +6,7 @@
         "UnityEngine.TestRunner",
         "Project.Characters",
         "Project.Combat",
+        "Project.Pickups",
         "Project.Pooling",
         "Project.Tests",
         "Project.Variables",

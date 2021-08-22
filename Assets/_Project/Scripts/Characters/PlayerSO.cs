@@ -9,5 +9,9 @@ namespace Project.Characters
         [Space]
         [Header("Movement")]
         public float MovementSpeed = 1;
+
+        [Space]
+        [Header("Weapons")]
+        public int MaxWeaponCount = 2;
     }
 }

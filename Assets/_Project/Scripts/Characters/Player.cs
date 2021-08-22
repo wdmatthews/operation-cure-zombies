@@ -8,7 +8,7 @@ namespace Project.Characters
 {
     [AddComponentMenu("Project/Characters/Player")]
     [DisallowMultipleComponent]
-    public class Player : Damageable, IPlayer
+    public class Player : Damageable, IPlayer, IWeaponHolder
     {
         [SerializeField] private PlayerSO _initialPlayerData = null;
         [SerializeField] private WeaponSO[] _initialWeapons = { };
@@ -91,9 +91,10 @@ namespace Project.Characters
             Aim(direction);
         }
 
-        public void AddWeapon(Weapon weapon)
+        public void AddWeapon(Weapon weapon, int index = -1)
         {
-            Weapons.Add(weapon);
+            if (index < 0) Weapons.Add(weapon);
+            else Weapons.Insert(index, weapon);
             weapon.gameObject.SetActive(false);
             weapon.transform.SetParent(_weaponContainer, false);
         }
@@ -172,6 +173,45 @@ namespace Project.Characters
         {
             if (!context.performed || !Weapons.Current) return;
             ReloadWeapon();
+        }
+
+        public void PickUpWeapon(Weapon weapon)
+        {
+            int weaponCount = Weapons.Count;
+
+            for (int i = weaponCount - 1; i >= 0; i--)
+            {
+                if (Weapons[i].WeaponData == weapon.WeaponData) return;
+            }
+
+            if (weaponCount < PlayerData.MaxWeaponCount)
+            {
+                AddWeapon(weapon);
+                SelectWeapon(weaponCount);
+            }
+            else
+            {
+                int currentIndex = Weapons.CurrentIndex;
+                DropWeapon(currentIndex);
+                AddWeapon(weapon, currentIndex);
+                Weapons.Select(currentIndex);
+                ShowNewWeapon();
+            }
+        }
+
+        public void DropWeapon(int index)
+        {
+            Weapon weapon = Weapons[index];
+            WeaponPickupSO pickupData = (WeaponPickupSO)weapon.WeaponData.WeaponPickup;
+
+            if (pickupData)
+            {
+                WeaponPickup pickup = (WeaponPickup)pickupData.Request();
+                pickup.Spawn(weapon.transform.position);
+            }
+
+            weapon.ReturnToPool();
+            RemoveWeapon(index);
         }
     }
 }

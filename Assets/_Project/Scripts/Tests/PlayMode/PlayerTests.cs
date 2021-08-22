@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine.TestTools;
 using Project.Characters;
-using Project.Combat;
 using Project.Weapons;
 
 namespace Project.Tests.PlayMode
@@ -15,7 +14,7 @@ namespace Project.Tests.PlayMode
             [UnityTest]
             public IEnumerator Given_ThreeWeaponsAndSelectSecond_Then_SecondIsCurrent()
             {
-                DamageableSO playerData = DamageableBuilder.DefaultData;
+                PlayerSO playerData = PlayerBuilder.DefaultData;
                 List<Weapon> weapons = new List<Weapon> { A.Weapon, A.Weapon, A.Weapon };
                 Player player = A.Player.WithData(playerData).WithWeapons(weapons).WithCurrentWeapon(0);
                 player.SelectWeapon(1);
@@ -26,7 +25,7 @@ namespace Project.Tests.PlayMode
             [UnityTest]
             public IEnumerator Given_ThreeWeaponsAndSecondIsCurrentAndSelectPrevious_Then_FirstIsCurrent()
             {
-                DamageableSO playerData = DamageableBuilder.DefaultData;
+                PlayerSO playerData = PlayerBuilder.DefaultData;
                 List<Weapon> weapons = new List<Weapon> { A.Weapon, A.Weapon, A.Weapon };
                 Player player = A.Player.WithData(playerData).WithWeapons(weapons).WithCurrentWeapon(1);
                 player.SelectPreviousWeapon();
@@ -37,7 +36,7 @@ namespace Project.Tests.PlayMode
             [UnityTest]
             public IEnumerator Given_ThreeWeaponsAndSecondIsCurrentAndSelectNext_Then_LastIsCurrent()
             {
-                DamageableSO playerData = DamageableBuilder.DefaultData;
+                PlayerSO playerData = PlayerBuilder.DefaultData;
                 List<Weapon> weapons = new List<Weapon> { A.Weapon, A.Weapon, A.Weapon };
                 Player player = A.Player.WithData(playerData).WithWeapons(weapons).WithCurrentWeapon(1);
                 player.SelectNextWeapon();
@@ -48,7 +47,7 @@ namespace Project.Tests.PlayMode
             [UnityTest]
             public IEnumerator Given_ThreeWeaponsAndFirstIsCurrentAndSelectPrevious_Then_LastIsCurrent()
             {
-                DamageableSO playerData = DamageableBuilder.DefaultData;
+                PlayerSO playerData = PlayerBuilder.DefaultData;
                 List<Weapon> weapons = new List<Weapon> { A.Weapon, A.Weapon, A.Weapon };
                 Player player = A.Player.WithData(playerData).WithWeapons(weapons).WithCurrentWeapon(0);
                 player.SelectPreviousWeapon();
@@ -59,7 +58,7 @@ namespace Project.Tests.PlayMode
             [UnityTest]
             public IEnumerator Given_ThreeWeaponsAndLastIsCurrentAndSelectNext_Then_FirstIsCurrent()
             {
-                DamageableSO playerData = DamageableBuilder.DefaultData;
+                PlayerSO playerData = PlayerBuilder.DefaultData;
                 List<Weapon> weapons = new List<Weapon> { A.Weapon, A.Weapon, A.Weapon };
                 Player player = A.Player.WithData(playerData).WithWeapons(weapons).WithCurrentWeapon(2);
                 player.SelectNextWeapon();
@@ -70,7 +69,7 @@ namespace Project.Tests.PlayMode
             [UnityTest]
             public IEnumerator Given_TwoWeaponsAndFirstIsCurrentAndRemoveFirst_Then_SecondIsFirstAndCurrent()
             {
-                DamageableSO playerData = DamageableBuilder.DefaultData;
+                PlayerSO playerData = PlayerBuilder.DefaultData;
                 List<Weapon> weapons = new List<Weapon> { A.Weapon, A.Weapon };
                 Player player = A.Player.WithData(playerData).WithWeapons(weapons).WithCurrentWeapon(0);
                 player.Weapons.RemoveAt(0);
@@ -82,7 +81,7 @@ namespace Project.Tests.PlayMode
             [UnityTest]
             public IEnumerator Given_TwoWeaponsAndFirstIsCurrentAndRemoveSecond_Then_FirstIsStillCurrent()
             {
-                DamageableSO playerData = DamageableBuilder.DefaultData;
+                PlayerSO playerData = PlayerBuilder.DefaultData;
                 List<Weapon> weapons = new List<Weapon> { A.Weapon, A.Weapon };
                 Player player = A.Player.WithData(playerData).WithWeapons(weapons).WithCurrentWeapon(0);
                 player.Weapons.RemoveAt(1);
@@ -94,7 +93,7 @@ namespace Project.Tests.PlayMode
             [UnityTest]
             public IEnumerator Given_TwoWeaponsAndSecondIsCurrentAndRemoveSecond_Then_FirstIsCurrent()
             {
-                DamageableSO playerData = DamageableBuilder.DefaultData;
+                PlayerSO playerData = PlayerBuilder.DefaultData;
                 List<Weapon> weapons = new List<Weapon> { A.Weapon, A.Weapon };
                 Player player = A.Player.WithData(playerData).WithWeapons(weapons).WithCurrentWeapon(1);
                 player.Weapons.RemoveAt(1);

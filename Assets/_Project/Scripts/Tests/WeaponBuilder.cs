@@ -19,6 +19,9 @@ namespace Project.Tests
                     _defaultData.CooldownDuration = 1;
                     _defaultData.ReloadDuration = 1;
                     _defaultData.ReloadBehavior = ScriptableObject.CreateInstance<StandardReloadBehaviorSO>();
+                    _defaultData.Pool = ScriptableObject.CreateInstance<WeaponPoolSO>();
+                    _defaultData.Pool.Prefab = A.Weapon;
+                    _defaultData.Pool.Prefab.gameObject.SetActive(false);
                 }
 
                 return _defaultData;
@@ -54,6 +57,7 @@ namespace Project.Tests
             weapon.WeaponData = _data;
             weapon.AmmoInClip = _ammoInClip;
             weapon.AmmoInReserve = _ammoInReserve;
+            weapon.Pool = _data ? _data.Pool : DefaultData.Pool;
             return weapon;
         }
 

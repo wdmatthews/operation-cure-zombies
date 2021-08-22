@@ -4,7 +4,7 @@ namespace Project.Weapons
 {
     public class Weapon : MonoBehaviour, IWeapon
     {
-        public virtual WeaponSO WeaponData { get; set; }
+        public WeaponSO WeaponData { get; set; }
         public WeaponPoolSO Pool { get; set; }
         public int AmmoInClip { get; set; }
         public int AmmoInReserve { get; set; }

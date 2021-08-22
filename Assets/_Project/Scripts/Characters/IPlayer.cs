@@ -12,7 +12,7 @@ namespace Project.Characters
 
         void Move(Vector2 direction);
         void Aim(Vector2 direction);
-        void AddWeapon(Weapon weapon);
+        void AddWeapon(Weapon weapon, int index = -1);
         void RemoveWeapon(int index);
         void SelectWeapon(int index);
         void SelectPreviousWeapon();

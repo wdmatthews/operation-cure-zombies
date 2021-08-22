@@ -2,6 +2,7 @@
     "name": "Project.Weapons",
     "rootNamespace": "Project.Weapons",
     "references": [
+        "GUID:4acce74ae5ec04488b0383c1d7313384",
         "GUID:7c65efcbc511f406fac00ce2ff9d5b39"
     ],
     "includePlatforms": [],

@@ -7,6 +7,7 @@ namespace Project.Weapons
     public class WeaponSO : ScriptableObject
     {
         public WeaponPoolSO Pool = null;
+        public ScriptableObject WeaponPickup = null;
 
         [Header("Use")]
         public float CooldownDuration = 1;

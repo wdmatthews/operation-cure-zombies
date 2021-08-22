@@ -1,35 +1,35 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Project.Characters;
-using Project.Combat;
 using Project.Weapons;
 
 namespace Project.Tests
 {
     public class PlayerBuilder
     {
-        private static DamageableSO _defaultData = null;
+        private static PlayerSO _defaultData = null;
 
-        public static DamageableSO DefaultData
+        public static PlayerSO DefaultData
         {
             get
             {
                 if (_defaultData == null)
                 {
-                    _defaultData = ScriptableObject.CreateInstance<DamageableSO>();
+                    _defaultData = ScriptableObject.CreateInstance<PlayerSO>();
                     _defaultData.MaxHealth = 2;
+                    _defaultData.MaxWeaponCount = 3;
                 }
 
                 return _defaultData;
             }
         }
 
-        private DamageableSO _data = null;
+        private PlayerSO _data = null;
         private int _health = 0;
         private List<Weapon> _weapons = new List<Weapon>();
         private int _currentWeaponIndex = 0;
 
-        public PlayerBuilder WithData(DamageableSO data)
+        public PlayerBuilder WithData(PlayerSO data)
         {
             _data = data;
             return this;

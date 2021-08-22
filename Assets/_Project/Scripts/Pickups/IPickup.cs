@@ -8,5 +8,7 @@ namespace Project.Pickups
         PickupPoolSO Pool { get; set; }
 
         void Apply(MonoBehaviour behavior);
+        void Spawn(Vector3 position);
+        void ReturnToPool();
     }
 }
