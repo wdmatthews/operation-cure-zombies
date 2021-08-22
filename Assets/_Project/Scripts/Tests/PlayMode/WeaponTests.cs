@@ -153,6 +153,18 @@ namespace Project.Tests.PlayMode
                 Assert.IsTrue(weapon.AmmoInReserve == 0);
                 yield return null;
             }
+
+            [UnityTest]
+            public IEnumerator Given_IsCoolingDownAndStartReload_Then_StopCoolingDownAndReload()
+            {
+                WeaponSO weaponData = WeaponBuilder.DefaultData;
+                Weapon weapon = A.Weapon.WithData(weaponData).WithAmmoInReserve(1);
+                weapon.IsCoolingDown = true;
+                weapon.StartReload();
+                Assert.IsFalse(weapon.IsCoolingDown);
+                Assert.IsTrue(weapon.IsReloading);
+                yield return null;
+            }
         }
 
         public class ChangeAmmo

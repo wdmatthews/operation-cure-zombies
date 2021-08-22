@@ -63,6 +63,7 @@ namespace Project.Weapons
             if (!CanReload) return;
             IsReloading = true;
             ReloadTimer = WeaponData.ReloadDuration;
+            FinishCooldown();
             WeaponData.ReloadBehavior.StartReload(this);
         }
 
