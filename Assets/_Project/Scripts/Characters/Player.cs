@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Project.Combat;
+using Project.Pickups;
 using Project.Variables;
 using Project.Weapons;
 
@@ -8,7 +9,7 @@ namespace Project.Characters
 {
     [AddComponentMenu("Project/Characters/Player")]
     [DisallowMultipleComponent]
-    public class Player : Damageable, IPlayer, IWeaponHolder
+    public class Player : Damageable, IPlayer, IWeaponHolder, IPickupInteractor
     {
         [SerializeField] private PlayerSO _initialPlayerData = null;
         [SerializeField] private WeaponSO[] _initialWeapons = { };
@@ -18,6 +19,7 @@ namespace Project.Characters
 
         public PlayerSO PlayerData { get => (PlayerSO)DamageableData; set => DamageableData = value; }
         public SelectionList<Weapon> Weapons { get; set; } = new SelectionList<Weapon>();
+        public Pickup PickupInRange { get; set; }
 
         public bool CanSwapWeapon
         {
@@ -96,7 +98,10 @@ namespace Project.Characters
             if (index < 0) Weapons.Add(weapon);
             else Weapons.Insert(index, weapon);
             weapon.gameObject.SetActive(false);
-            weapon.transform.SetParent(_weaponContainer, false);
+            Transform weaponTransform = weapon.transform;
+            weaponTransform.SetParent(_weaponContainer, false);
+            weaponTransform.localPosition = new Vector3();
+            weaponTransform.localEulerAngles = new Vector3();
         }
 
         public void RemoveWeapon(int index)
@@ -178,12 +183,12 @@ namespace Project.Characters
         public void PickUpWeapon(Weapon weapon)
         {
             int weaponCount = Weapons.Count;
-
+            
             for (int i = weaponCount - 1; i >= 0; i--)
             {
                 if (Weapons[i].WeaponData == weapon.WeaponData) return;
             }
-
+            
             if (weaponCount < PlayerData.MaxWeaponCount)
             {
                 AddWeapon(weapon);
@@ -201,8 +206,9 @@ namespace Project.Characters
 
         public void PickUpWeapon(InputAction.CallbackContext context)
         {
-            if (!context.performed) return;
-
+            Pickup pickupInRange = PickupInRange;
+            if (!context.performed || !pickupInRange) return;
+            pickupInRange.Apply(this);
         }
 
         public void DropWeapon(int index)

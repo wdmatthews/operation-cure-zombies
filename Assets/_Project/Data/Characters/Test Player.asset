@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth: 1
   MovementSpeed: 2.5
+  MaxWeaponCount: 3
