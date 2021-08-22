@@ -235,5 +235,32 @@ namespace Project.Characters
             if (weaponCount == 0) return;
             SelectWeapon(Mathf.Clamp(currentWeaponIndex, 0, weaponCount - 1));
         }
+
+        public bool PickUpAmmo(AmmoTypeSO ammoType, int amount)
+        {
+            int currentWeaponIndex = Weapons.CurrentIndex;
+            Weapon currentWeapon = Weapons.Current;
+            if (currentWeaponIndex < 0) return false;
+
+            if (currentWeapon.WeaponData.AmmoType == ammoType)
+            {
+                currentWeapon.ChangeAmmoInReserve(amount);
+                return true;
+            }
+
+            for (int i = Weapons.Count - 1; i >= 0; i--)
+            {
+                if (i == currentWeaponIndex) continue;
+                Weapon weapon = Weapons[i];
+                
+                if (weapon.WeaponData.AmmoType == ammoType)
+                {
+                    weapon.ChangeAmmoInReserve(amount);
+                    return true;
+                }
+            }
+
+            return false;
+        }
     }
 }
