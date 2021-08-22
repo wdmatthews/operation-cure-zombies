@@ -19,6 +19,17 @@ namespace Project.Characters
         public PlayerSO PlayerData { get => (PlayerSO)DamageableData; set => DamageableData = value; }
         public SelectionList<Weapon> Weapons { get; set; } = new SelectionList<Weapon>();
 
+        public bool CanSwapWeapon
+        {
+            get
+            {
+                Weapon currentWeapon = Weapons.Current;
+                return currentWeapon && !currentWeapon.IsCoolingDown;
+            }
+        }
+
+        private bool _useInput = false;
+
         private void Awake()
         {
             if (_initialPlayerData) PlayerData = _initialPlayerData;
@@ -26,7 +37,11 @@ namespace Project.Characters
 
             for (int i = 0; i < initialWeaponCount; i++)
             {
-                AddWeapon(_initialWeapons[i].Request());
+                WeaponSO weaponData = _initialWeapons[i];
+                Weapon weapon = weaponData.Request();
+                weapon.AmmoInClip = weaponData.ClipSize;
+                weapon.AmmoInReserve = weaponData.ReserveSize;
+                AddWeapon(weapon);
             }
 
             if (initialWeaponCount > 0) SelectWeapon(0);
@@ -34,12 +49,31 @@ namespace Project.Characters
 
         private void Update()
         {
-            Weapons.Current?.OnUpdate();
+            Weapon currentWeapon = Weapons.Current;
+            if (currentWeapon) Weapons.Current.OnUpdate();
+
+            if (_useInput && currentWeapon)
+            {
+                UseWeapon();
+                if (!currentWeapon.WeaponData.IsAutomatic) _useInput = false;
+            }
+        }
+
+        public void Move(Vector2 direction)
+        {
+            _rigidbody.velocity = PlayerData.MovementSpeed * direction;
         }
 
         public void Move(InputAction.CallbackContext context)
         {
-            _rigidbody.velocity = PlayerData.MovementSpeed * context.ReadValue<Vector2>();
+            Move(context.ReadValue<Vector2>());
+        }
+
+        public void Aim(Vector2 direction)
+        {
+            if (Mathf.Approximately(direction.x, 0) && Mathf.Approximately(direction.y, 0)) return;
+            float angle = Mathf.Rad2Deg * Mathf.Atan2(direction.y, direction.x);
+            transform.eulerAngles = new Vector3(0, 0, angle);
         }
 
         public void Aim(InputAction.CallbackContext context)
@@ -54,9 +88,7 @@ namespace Project.Characters
             }
             else direction = context.ReadValue<Vector2>();
 
-            if (Mathf.Approximately(direction.x, 0) && Mathf.Approximately(direction.y, 0)) return;
-            float angle = Mathf.Rad2Deg * Mathf.Atan2(direction.y, direction.x);
-            transform.eulerAngles = new Vector3(0, 0, angle);
+            Aim(direction);
         }
 
         public void AddWeapon(Weapon weapon)
@@ -95,7 +127,11 @@ namespace Project.Characters
 
         private void HideOldWeapon()
         {
-            Weapons.Current?.gameObject.SetActive(false);
+            Weapon currentWeapon = Weapons.Current;
+            if (!currentWeapon) return;
+            currentWeapon.ResetCooldown();
+            currentWeapon.CancelReload();
+            currentWeapon.gameObject.SetActive(false);
         }
 
         private void ShowNewWeapon()
@@ -105,12 +141,37 @@ namespace Project.Characters
 
         public void SelectPreviousWeapon(InputAction.CallbackContext context)
         {
-            if (context.performed) SelectPreviousWeapon();
+            if (!context.performed || !CanSwapWeapon) return;
+            SelectPreviousWeapon();
         }
 
         public void SelectNextWeapon(InputAction.CallbackContext context)
         {
-            if (context.performed) SelectNextWeapon();
+            if (!context.performed || !CanSwapWeapon) return;
+            SelectNextWeapon();
+        }
+
+        public void UseWeapon()
+        {
+            Weapons.Current.Use();
+        }
+
+        public void UseWeapon(InputAction.CallbackContext context)
+        {
+            if (!Weapons.Current) return;
+            if (context.performed) _useInput = true;
+            else if (context.canceled) _useInput = false;
+        }
+
+        public void ReloadWeapon()
+        {
+            Weapons.Current.StartReload();
+        }
+
+        public void ReloadWeapon(InputAction.CallbackContext context)
+        {
+            if (!context.performed || !Weapons.Current) return;
+            ReloadWeapon();
         }
     }
 }

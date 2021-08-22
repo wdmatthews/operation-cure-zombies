@@ -1,4 +1,4 @@
-using UnityEngine.InputSystem;
+using UnityEngine;
 using Project.Weapons;
 using Project.Variables;
 
@@ -8,15 +8,16 @@ namespace Project.Characters
     {
         PlayerSO PlayerData { get; set; }
         SelectionList<Weapon> Weapons { get; set; }
+        bool CanSwapWeapon { get; }
 
-        void Move(InputAction.CallbackContext context);
-        void Aim(InputAction.CallbackContext context);
+        void Move(Vector2 direction);
+        void Aim(Vector2 direction);
         void AddWeapon(Weapon weapon);
         void RemoveWeapon(int index);
         void SelectWeapon(int index);
         void SelectPreviousWeapon();
         void SelectNextWeapon();
-        void SelectPreviousWeapon(InputAction.CallbackContext context);
-        void SelectNextWeapon(InputAction.CallbackContext context);
+        void UseWeapon();
+        void ReloadWeapon();
     }
 }

@@ -18,8 +18,9 @@ namespace Project.Weapons
         bool CanReload { get; }
 
         void ReturnToPool();
-        void Use();
+        bool Use();
         void StartCooldown();
+        void ResetCooldown();
         void FinishCooldown();
         void StartReload();
         void CancelReload();

@@ -10,6 +10,7 @@ namespace Project.Weapons
 
         [Header("Use")]
         public float CooldownDuration = 1;
+        public bool IsAutomatic = false;
 
         [Space]
         [Header("Ammo")]

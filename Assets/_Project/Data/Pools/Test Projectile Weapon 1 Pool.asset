@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b01ecb26f695436c94b49dc383ddfed, type: 3}
   m_Name: Test Projectile Weapon 1 Pool
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 1480525112185117208, guid: e3eec46a64c4248ae826d436bebf0317, type: 3}
+  Prefab: {fileID: -5963504653776089736, guid: 91b73a238f94d4a34a9c348bf124203d, type: 3}

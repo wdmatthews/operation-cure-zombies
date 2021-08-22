@@ -25,23 +25,30 @@ namespace Project.Weapons
             Pool.Return(this);
         }
 
-        public virtual void Use()
+        public virtual bool Use()
         {
-            if (!CanUse) return;
+            if (!CanUse) return false;
 
             if (NeedsToReload)
             {
                 StartReload();
-                return;
+                return false;
             }
 
             StartCooldown();
+            return true;
         }
 
         public virtual void StartCooldown()
         {
             if (IsCoolingDown) return;
             IsCoolingDown = true;
+            CooldownTimer = WeaponData.CooldownDuration;
+        }
+
+        public virtual void ResetCooldown()
+        {
+            if (!IsCoolingDown) return;
             CooldownTimer = WeaponData.CooldownDuration;
         }
 

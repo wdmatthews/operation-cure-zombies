@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pool: {fileID: 11400000, guid: 60c05070ef5e84126a787f12667a1d34, type: 2}
   CooldownDuration: 1
+  IsAutomatic: 1
   AmmoType: {fileID: 11400000, guid: 0661a24ea693449b5b3618fb0385b44c, type: 2}
   ClipSize: 1
   ReserveSize: 2

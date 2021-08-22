@@ -8,10 +8,11 @@ namespace Project.Weapons
             set => WeaponData = value;
         }
 
-        public override void Use()
+        public override bool Use()
         {
-            base.Use();
+            if (!base.Use()) return false;
             SpawnProjectiles();
+            return true;
         }
 
         protected virtual void SpawnProjectiles()

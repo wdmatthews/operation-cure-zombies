@@ -86,6 +86,18 @@ namespace Project.Tests.PlayMode
         public class Cooldown
         {
             [UnityTest]
+            public IEnumerator Given_IsCoolingDownAndResetCooldown_Then_CooldownReset()
+            {
+                WeaponSO weaponData = WeaponBuilder.DefaultData;
+                Weapon weapon = A.Weapon.WithData(weaponData);
+                weapon.IsCoolingDown = true;
+                weapon.ResetCooldown();
+                Assert.IsTrue(weapon.IsCoolingDown);
+                Assert.IsTrue(Mathf.Approximately(weapon.CooldownTimer, weaponData.CooldownDuration));
+                yield return null;
+            }
+
+            [UnityTest]
             public IEnumerator Given_IsCoolingDownAndFinishCooldown_Then_NotCoolingDown()
             {
                 Weapon weapon = A.Weapon;
