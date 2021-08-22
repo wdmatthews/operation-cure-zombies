@@ -10,6 +10,12 @@ namespace Project.Variables
         public T Current { get; private set; }
         public int Count => _list.Count;
 
+        public T this[int index]
+        {
+            get => _list[index];
+            set => _list[index] = value;
+        }
+
         public void Add(T item) => _list.Add(item);
         public void AddRange(IEnumerable<T> items) => _list.AddRange(items);
         public void Remove(T item) => RemoveAt(_list.IndexOf(item));

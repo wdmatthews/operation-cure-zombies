@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2392143829744060589
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4451170775796057394}
+  m_Layer: 6
+  m_Name: Weapon Container
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4451170775796057394
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2392143829744060589}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.5, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3263640375013652347}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3263640375013652350
 GameObject:
   m_ObjectHideFlags: 0
@@ -31,7 +61,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 4451170775796057394}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -48,8 +79,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _initialPlayerData: {fileID: 11400000, guid: fb37f630836344703bf619ef9f7f1170, type: 2}
+  _initialWeapons:
+  - {fileID: 11400000, guid: 96ab13c2281044aeeb3c3d3a4b2be3d4, type: 2}
+  - {fileID: 11400000, guid: f3c24b44bf9d042e0b50a133e9669638, type: 2}
+  - {fileID: 11400000, guid: 9253a199e416e4e47be4df4f87cb9a3e, type: 2}
   _rigidbody: {fileID: 3263640375013652348}
   _camera: {fileID: 11400000, guid: 6632727de235042abaca13685d9250c9, type: 2}
+  _weaponContainer: {fileID: 4451170775796057394}
 --- !u!114 &3263640375013652344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107,6 +143,38 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: e7f97940-de07-46de-86e1-63ee5bcb53ed
     m_ActionName: Gameplay/Aim[/Mouse/delta]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3263640375013652346}
+        m_TargetAssemblyTypeName: Project.Characters.Player, Project.Characters
+        m_MethodName: SelectPreviousWeapon
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 2f39f608-dc77-4a60-9273-63fd353c453d
+    m_ActionName: Gameplay/SelectPreviousWeapon[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3263640375013652346}
+        m_TargetAssemblyTypeName: Project.Characters.Player, Project.Characters
+        m_MethodName: SelectNextWeapon
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 93628205-e0a1-42a6-8ab9-0229f8265c54
+    m_ActionName: Gameplay/SelectNextWeapon[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay

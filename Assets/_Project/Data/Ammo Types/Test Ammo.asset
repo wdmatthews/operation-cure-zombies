@@ -9,8 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26a5d0e1aedf44669ac7e204dff91bb0, type: 3}
-  m_Name: Player
+  m_Script: {fileID: 11500000, guid: 0541520b60a4a4232b43458712d2462b, type: 3}
+  m_Name: Test Ammo
   m_EditorClassIdentifier: 
-  MaxHealth: 1
-  MovementSpeed: 2.5

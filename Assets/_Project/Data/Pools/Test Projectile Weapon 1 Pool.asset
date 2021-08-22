@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9145276da14ea4f2981cbd8e3c637eb4, type: 3}
-  m_Name: Projectile
+  m_Script: {fileID: 11500000, guid: 2b01ecb26f695436c94b49dc383ddfed, type: 3}
+  m_Name: Test Projectile Weapon 1 Pool
   m_EditorClassIdentifier: 
-  Pool: {fileID: 11400000, guid: 88ee4469318f743f48e7a8c04009c566, type: 2}
-  Speed: 10
+  Prefab: {fileID: 1480525112185117208, guid: e3eec46a64c4248ae826d436bebf0317, type: 3}
